@@ -1,6 +1,6 @@
 <?php
 
-require_once (ROOT_SITE . "ActiveRecord.php");
+require_once (ROOT_SITE . "/includes/ActiveRecord.php");
 /**
  * Created by PhpStorm.
  * User: Mojtaba
