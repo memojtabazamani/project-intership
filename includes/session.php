@@ -42,9 +42,14 @@ function flashMessage($message, $type = 'success') {
 
 function failureMessage() {
     $_SESSION['messages']['type'] = "danger";
-    $_SESSION['messages'][] = "متأسفانه مشکلی پیش آمده، مجددا امتحان کنید";
+    $_SESSION['messages'][] = "Oopps! Have Problem ! Please Try Again Later !";
 }
 
+
+function successMessage() {
+    $_SESSION['messages']['type'] = "success";
+    $_SESSION['messages'][] = "Mission accomplished";
+}
 /**
  * @return bool
  * This function check be a user login or not?

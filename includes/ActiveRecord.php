@@ -28,7 +28,6 @@ class ActiveRecord {
         } else {
             return $stmt;
         }
-
     }
 
 

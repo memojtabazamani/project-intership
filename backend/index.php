@@ -9,7 +9,7 @@
 require_once "../includes/Init.php";
 
 ?>
-<?php $titleSite = "صفحه مدیریت";
+<?php $titleSite = "Dashboard";
 include("../includes/layout/Admin/adminHeader.php") ?>
 
 <?php
@@ -32,15 +32,22 @@ $result = $musics->FindAll(true);
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Dashboard</h1>
             <h2 class="sub-header">Section title</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <?php showMessages() ?>
+                    </p>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <?php if(!empty($result)) { ?>
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>Title</th>
                         <th>Signer</th>
                         <th>Genre</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
 
@@ -48,11 +55,7 @@ $result = $musics->FindAll(true);
                     <tbody>
                         <?php foreach ($result as $row) { ?>
                             <tr>
-                                <td width="8%">
-                                    <a href="#">
-                                        <img src="<?= Consts::DIR_OF_UPLOAD_IMAGES . $row['musics_image'] ?>" alt="" class="img img-thumbnail img-responsive img-rounded " width="100%">
-                                    </a>
-                                </td>
+
                                 <td>
                                     <?= $row['musics_title'] ?>
                                 </td>
@@ -63,6 +66,20 @@ $result = $musics->FindAll(true);
                                     <span class="badge info small bg-info">
                                         <?= $row['musics_genre'] ?>
                                     </span>
+                                </td>
+
+                                <td>
+                                    <a href="#" class="text-decoration-none text-danger"
+                                       id="triggerOfModalDelete"
+                                       data-id="<?= $row['musics_id'] ?>"
+                                       data-title="<?= $row['musics_title'] ?>"
+                                       data-target="deleteModal"
+                                    > <span>
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </span></a>
+                                    <a href="#" class="text-decoration-none text-info"> <span>
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </span></a>
                                 </td>
 
                             </tr>
@@ -78,3 +95,23 @@ $result = $musics->FindAll(true);
 </div>
 </body>
 <?php include("../includes/layout/Admin/AdminFooter.php") ?>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="actions/actionDelete.php" method="POST">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+
+                <input type="hidden" name="idOfMusic">
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

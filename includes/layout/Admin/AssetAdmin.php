@@ -8,7 +8,8 @@
 $assets = array(
     "assets/css/bootstrap.css",
     "assets/css/dashboard.css",
-    "assets/css/styles.css"
+    "assets/css/styles.css",
+    "assets/css/mystyle.css"
 );
 foreach($assets as $asset) {
     $href = ROOT_SITE_ASSET . $asset;

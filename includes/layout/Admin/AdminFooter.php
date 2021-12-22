@@ -18,7 +18,7 @@
 $assets = array(
     "assets/js/jquery.min.js",
         "assets/js/bootstrap.min.js",
-
+    "assets/js/myjavascipt.js",
 
 );
 foreach($assets as $asset) {

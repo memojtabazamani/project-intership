@@ -15,12 +15,11 @@ function redirectTo($location)
  * @param $file
  * @return string
  */
-function uploadfile($file)
+function uploadfile($file, $dirUpload)
 {
     $nameOfFile = md5(pathinfo($file["name"], PATHINFO_FILENAME)) . "-" . strtotime('now') . "." . pathinfo($file['name'], PATHINFO_EXTENSION);
-    move_uploaded_file($file["tmp_name"], ROOT_SITE . DS . "assets/uploads/" . $nameOfFile);
+    move_uploaded_file($file["tmp_name"], $dirUpload . $nameOfFile);
     return $nameOfFile;
-
 }
 
 /**
@@ -127,7 +126,7 @@ function checkFileUpload($file, $message = true)
     // Check are file selected?!
     if ($file['tmp_name'] == "") {
         if ($message) {
-            $_SESSION['messages']['imageUpload'] = "لطفا عکس مورد نظر را انتخاب کنید";
+            $_SESSION['messages']['imageUpload'] = "Please Select A File ";
         }
         return false;
     }
@@ -152,6 +151,21 @@ function checkTypeImage($file)
     }
     return $check;
 }
+
+function checkTypeMusic($file)
+{
+    // Valid Tpye Images
+    $imageTypes = array("mp3", "mp4");
+    // Get extension use pathinfo function
+    $thisExt = pathinfo($file['name'])['extension'];
+    // and check
+    $check = in_array($thisExt, $imageTypes);
+    if ($check == false) {
+        $_SESSION['messages']['imageUpload'] = " Please Select A Valid Format Music! : mp3 , mp4 ";
+    }
+    return $check;
+}
+
 
 /**
  * @param $file

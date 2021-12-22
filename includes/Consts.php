@@ -14,4 +14,7 @@ class Consts {
     const DIR_OF_UPLOAD_IMAGES = ROOT_SITE_ASSET . "uploads" . DS . "images" . DS;
     const DIR_OF_UPLOAD_MUSICS = ROOT_SITE_ASSET . "uploads" . DS . "musics" . DS;
 
+    const DIR_OF_UPLOAD_FORM_IMAGES = ROOT_SITE . "uploads" . DS . "images" . DS;
+    const DIR_OF_UPLOAD_FORM_MUSICS = ROOT_SITE . "uploads" . DS . "musics" . DS;
+
 }
