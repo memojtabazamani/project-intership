@@ -26,9 +26,9 @@ function uploadfile($file, $dirUpload)
  * @param $filename
  * @param $file
  */
-function uploadfileupdate($filename, $file)
+function uploadfileupdate($filename, $file, $dirUpload)
 {
-    move_uploaded_file($file["tmp_name"], ROOT_SITE . DS . "assets/uploads/" . $filename);
+    move_uploaded_file($file["tmp_name"], $dirUpload . $filename);
 }
 
 
@@ -147,7 +147,7 @@ function checkTypeImage($file)
     // and check
     $check = in_array($thisExt, $imageTypes);
     if ($check == false) {
-        $_SESSION['messages']['imageUpload'] = " کاربر گرامی عکس مورد نظر شما دارای فرمت نامعتبری میباشد،  لطفا عکسی با یکی از این فرمت ها انتخاب نمایید : jpg , png , jpeg , gif";
+        $_SESSION['messages']['imageUpload'] = " Please elect Valid Image Format : jpg , png , jpeg , gif";
     }
     return $check;
 }
@@ -195,6 +195,25 @@ function checkNumeric($value)
 function deleteImage($fileName)
 {
     unlink(ROOT_SITE . DS . "assets/uploads/$fileName");
+}
+
+function fetchSecure($item) {
+    $item = trim($item);
+    $item = stripslashes($item);
+    $item = htmlspecialchars($item);
+    return $item;
+}
+
+/**
+ * @param $requests
+ * @return mixed
+ */
+function removeBlockXSSForms($requests) {
+    foreach ($requests as $item => $key) {
+        $requests[$key] = fetchSecure($item);
+    }
+
+    return $requests;
 }
 
 ?>

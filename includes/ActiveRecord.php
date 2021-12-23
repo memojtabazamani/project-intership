@@ -10,6 +10,7 @@
 class ActiveRecord {
     protected $table_name = "";
     protected $db_connect = "";
+    protected $primaryKey = "";
     public function __construct()
     {
         $db = new database();
@@ -23,6 +24,15 @@ class ActiveRecord {
      */
     public function FindAll($areFetch = false) {
         $stmt = $this->db_connect->query("SELECT * FROM ". $this->table_name);
+        if($areFetch) {
+            return $stmt->fetchAll();
+        } else {
+            return $stmt;
+        }
+    }
+
+    public function FindOne($target, $areFetch = false) {
+        $stmt = $this->db_connect->query("SELECT * FROM ". $this->table_name . " WHERE " . $this->primaryKey . " = " . $target . " LIMIT 1");
         if($areFetch) {
             return $stmt->fetchAll();
         } else {

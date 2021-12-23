@@ -77,7 +77,7 @@ $result = $musics->FindAll(true);
                                     > <span>
                                         <i class="glyphicon glyphicon-remove"></i>
                                     </span></a>
-                                    <a href="#" class="text-decoration-none text-info"> <span>
+                                    <a href="edit.php?musics_id=<?php echo $row['musics_id'] ?>" class="text-decoration-none text-info" > <span>
                                         <i class="glyphicon glyphicon-edit"></i>
                                     </span></a>
                                 </td>
