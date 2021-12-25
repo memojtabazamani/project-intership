@@ -18,6 +18,7 @@ function redirectTo($location)
 function uploadfile($file, $dirUpload)
 {
     $nameOfFile = md5(pathinfo($file["name"], PATHINFO_FILENAME)) . "-" . strtotime('now') . "." . pathinfo($file['name'], PATHINFO_EXTENSION);
+
     move_uploaded_file($file["tmp_name"], $dirUpload . $nameOfFile);
     return $nameOfFile;
 }
